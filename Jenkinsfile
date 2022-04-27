@@ -63,9 +63,10 @@ pipeline {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
-    triggers {
-        // cron('H 2-22/2 4,5 12 6,7')
-    }
+/*    triggers {
+        cron('H 4 * * *')
+        // run every day at 4 AM
+    }*/
 
     stages {
         stage('Run Tests') {
