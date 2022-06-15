@@ -1,7 +1,6 @@
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.assertthat.selenium_shutterbug.core.Capture;
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import com.codeborne.selenide.*;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -39,8 +38,8 @@ public class Base {
 
     @Attachment(value = "{nazovScreenshotu}", type = "image/png")
     protected byte[] attachScreenshot(String nazovScreenshotu) throws IOException {
-        //return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(nazovScreenshotu).getBytes();
-        return Selenide.screenshot(OutputType.BYTES);
+        return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(nazovScreenshotu).getBytes();
+        //return Selenide.screenshot(OutputType.BYTES);
     }
 
 }
