@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,5 +37,10 @@ public class Base {
         }
     }
 
+    @Attachment(value = "{nazovScreenshotu}", type = "image/png")
+    protected byte[] attachScreenshot(String nazovScreenshotu) throws IOException {
+        //return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(nazovScreenshotu).getBytes();
+        return Selenide.screenshot(OutputType.BYTES);
+    }
 
 }
