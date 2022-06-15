@@ -29,7 +29,7 @@ public class Base {
         //Configuration.holdBrowserOpen = true;
         Configuration.timeout = 10000;
         Configuration.pageLoadTimeout = 30000;
-        Configuration.browserSize = "1920x1920";
+        //Configuration.browserSize = "1920x1920";
         Configuration.headless = false;
         Configuration.savePageSource = false;
         if (useSeleniumGrid) {
