@@ -58,7 +58,11 @@ Object generate_allure_report(allure_server_url, project_id, execution_name, exe
 }
 
 pipeline {
-    agent any
+      agent {
+        node {
+          label 'build2'
+        }
+      }
     options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
