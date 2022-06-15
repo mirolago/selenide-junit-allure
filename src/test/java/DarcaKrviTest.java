@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class Test1 extends Base {
+public class DarcaKrviTest extends Base {
 
     @Test
     public void testCase01() throws IOException {
