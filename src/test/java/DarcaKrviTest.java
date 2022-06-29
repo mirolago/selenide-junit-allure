@@ -69,7 +69,11 @@ public class DarcaKrviTest extends Base {
         clickRadio("kontaktZahranicieNie");
         clickRadio("priznakOchoreniaNie");
         clickRadio("prekonalCovidNie");
-        clickPokracovat("Pokračovať", "Ďakujeme, že ste sa rozhodli darovať krv", "Step 6");
+        $$("input.button").findBy(value("Pokračovať")).click();
+        sleep(2000);
+        switchTo().window(0);
+        $(byText("Ďakujeme, že ste sa rozhodli darovať krv")).shouldBe(visible);
+        attachScreenshot("Step 6");
     }
 
     private void clickPokracovat(String buttonValue, int step) throws IOException {
