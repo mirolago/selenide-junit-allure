@@ -60,7 +60,7 @@ Object generate_allure_report(allure_server_url, project_id, execution_name, exe
 pipeline {
       agent {
         node {
-          label 'build2'
+          label 'build17'
         }
       }
     options {
