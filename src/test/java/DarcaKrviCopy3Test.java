@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class DarcaKrviTest3 extends Base {
+public class DarcaKrviCopy3Test extends Base {
 
     @Test
     @Description("Test case 3-01")

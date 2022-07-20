@@ -107,9 +107,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin.version}</version>
         <configuration>
-          <forkCount>2</forkCount>
-          <reuseForks>false</reuseForks>
-          <testFailureIgnore>false</testFailureIgnore>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
           </argLine>
