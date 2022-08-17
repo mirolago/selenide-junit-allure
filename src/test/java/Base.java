@@ -1,19 +1,12 @@
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
+import org.junit.jupiter.api.AfterAll;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
 
 public class Base {
 
@@ -22,7 +15,7 @@ public class Base {
 
     static {
         String seleniumGridHub = System.getProperty("seleniumGridHub", "https://selenium4.astondev.sk");
-        final boolean useSeleniumGrid = Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "false"));
+        final boolean useSeleniumGrid = Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "true"));
 
         //Configuration.assertionMode = AssertionMode.SOFT;
         //Configuration.holdBrowserOpen = true;
@@ -39,7 +32,12 @@ public class Base {
     @Attachment(value = "{nazovScreenshotu}", type = "image/png")
     protected byte[] attachScreenshot(String nazovScreenshotu) throws IOException {
         return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(nazovScreenshotu).getBytes();
-        //return Selenide.screenshot(OutputType.BYTES);
     }
 
+    @AfterAll
+    public static void quitWebDriver() {
+        if (Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "true"))) {
+            Selenide.closeWebDriver();
+        }
+    }
 }

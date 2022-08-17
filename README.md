@@ -22,7 +22,7 @@ Maven build parameters:
 -DuseSeleniumGrid=true 
 -DseleniumGridHub=https://selenium4.astondev.sk 
 -DtestUrl=https://www.darcakrvi.sk/
-
+-DnumberOfSession=5 - Number of parallel sessions used in CustomStrategy class
 
 # jUnit properties
 junit-platform.properties descibed:
