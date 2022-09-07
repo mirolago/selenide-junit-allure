@@ -9,11 +9,10 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Vzorovy projekt pre automatizovane testy pre kombinaciu Selenide + jUnit5 + Allure report server</name>
-  <description>Vzorovy projekt pre automatizovane testy pre kombinaciu Selenide + jUnit5 + Allure report server</description>
+  <name>Example project for Selenide, jUnit5 and Allure docker service</name>
 
   <properties>
-    <allure.version>2.18.1</allure.version>
+    <allure.version>2.19.0</allure.version>
     <allure-maven.version>2.11.2</allure-maven.version>
     <aspectj.version>1.9.9.1</aspectj.version>
     <junit5.version>5.9.0</junit5.version>
@@ -23,7 +22,8 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <selenide.version>6.7.2</selenide.version>
+    <selenide.version>6.7.4</selenide.version>
+    <selenium.shutterbug>1.6</selenium.shutterbug>
   </properties>
 
   <dependencies>
@@ -89,7 +89,7 @@
     <dependency>
       <groupId>com.assertthat</groupId>
       <artifactId>selenium-shutterbug</artifactId>
-      <version>1.6</version>
+      <version>${selenium.shutterbug}</version>
       <exclusions>
         <exclusion>
           <groupId>org.seleniumhq.selenium</groupId>
