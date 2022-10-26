@@ -4,8 +4,11 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.jupiter.api.AfterAll;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Base {
@@ -15,7 +18,7 @@ public class Base {
 
     static {
         String seleniumGridHub = System.getProperty("seleniumGridHub", "https://selenium4.astondev.sk");
-        final boolean useSeleniumGrid = Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "true"));
+        final boolean useSeleniumGrid = Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "false"));
 
         //Configuration.assertionMode = AssertionMode.SOFT;
         //Configuration.holdBrowserOpen = true;
@@ -39,5 +42,16 @@ public class Base {
         if (Boolean.parseBoolean(System.getProperty("useSeleniumGrid", "true"))) {
             Selenide.closeWebDriver();
         }
+    }
+
+    public static String returnPdfContent(File file) throws IOException {
+        PDDocument document = PDDocument.load(file);
+        String text = null;
+        if(!document.isEncrypted()) {
+            PDFTextStripper stripper = new PDFTextStripper();
+            text = stripper.getText(document);
+        }
+        document.close();
+        return text;
     }
 }

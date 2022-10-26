@@ -1,10 +1,14 @@
+import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Description;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class DarcaKrviTest extends Base {
@@ -72,10 +76,14 @@ public class DarcaKrviTest extends Base {
         clickRadio("priznakOchoreniaNie");
         clickRadio("prekonalCovidNie");
         $$("input.button").findBy(value("Pokračovať")).click();
-        sleep(2000);
-        switchTo().window(0);
         $(byText("Ďakujeme, že ste sa rozhodli darovať krv")).shouldBe(visible);
+        switchTo().window(1);
+        $(byText("Váš dotazník sa pripravuje. Počkajte prosím...")).shouldBe(visible);
+        switchTo().window(0);
         attachScreenshot("Step 6");
+        sleep(1000);
+        File file = new File(WebDriverRunner.getBrowserDownloadsFolder() + "/dotaznik.pdf");
+        Assertions.assertTrue(returnPdfContent(file).contains("Dotazník pre darcov krvi"));
     }
 
     private void clickPokracovat(String buttonValue, int step) throws IOException {
