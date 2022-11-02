@@ -81,11 +81,17 @@ public class DarcaKrviTest extends Base {
         $(byText("Váš dotazník sa pripravuje. Počkajte prosím...")).shouldBe(visible);
         switchTo().window(0);
         attachScreenshot("Step 6");
-        sleep(1000);
         File file = new File(WebDriverRunner.getBrowserDownloadsFolder() + "/dotaznik.pdf");
         Assertions.assertTrue(returnPdfContent(file).contains("Dotazník pre darcov krvi"));
     }
 
+    @Test
+    public void itShouldDownloadBusinessRules() throws IOException {
+        open("https://www.tatrabanka.sk/sk/o-banke/dolezite-dokumenty/");
+        File file = $(byText("Etický kódex bánk v oblasti ochrany spotrebiteľa")).download();
+        Assertions.assertTrue(returnPdfContent(file).contains("Etický kódex"));
+        //assertTrue(returnPdfContent(file).contains("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx12456484"));
+    }
     private void clickPokracovat(String buttonValue, int step) throws IOException {
         clickPokracovat(buttonValue, "Krok " + step + " z 5", "Step " + step);
     }
