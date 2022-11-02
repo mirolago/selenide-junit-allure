@@ -86,6 +86,7 @@ public class DarcaKrviTest extends Base {
     }
 
     @Test
+    @Description("Test case 02")
     public void itShouldDownloadBusinessRules() throws IOException {
         open("https://www.tatrabanka.sk/sk/o-banke/dolezite-dokumenty/");
         File file = $(byText("Etický kódex bánk v oblasti ochrany spotrebiteľa")).download();
