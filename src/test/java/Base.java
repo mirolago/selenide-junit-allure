@@ -1,6 +1,7 @@
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.FileDownloadMode;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Attachment;
@@ -30,6 +31,8 @@ public class Base {
         if (useSeleniumGrid) {
             Configuration.remote = seleniumGridHub;
         }
+        Configuration.proxyEnabled = true;
+        Configuration.fileDownload = FileDownloadMode.PROXY;
     }
 
     @Attachment(value = "{nazovScreenshotu}", type = "image/png")
