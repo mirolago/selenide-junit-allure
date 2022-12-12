@@ -11,11 +11,11 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class DarcaKrviTest extends Base {
+class DarcaKrviTest extends Base {
 
     @Test
     @Description("Test case 01")
-    public void testCase01() throws IOException {
+    void testCase01() throws IOException {
         open(testUrl);
         attachScreenshot("Main screen");
         clickPokracovat("Slovenčina", 1);
@@ -85,14 +85,6 @@ public class DarcaKrviTest extends Base {
         Assertions.assertTrue(returnPdfContent(file).contains("Dotazník pre darcov krvi"));
     }
 
-    @Test
-    @Description("Test case 02")
-    public void itShouldDownloadBusinessRules() throws IOException {
-        open("https://www.tatrabanka.sk/sk/o-banke/dolezite-dokumenty/");
-        File file = $(byText("Etický kódex bánk v oblasti ochrany spotrebiteľa")).download();
-        Assertions.assertTrue(returnPdfContent(file).contains("Etický kódex"));
-        //assertTrue(returnPdfContent(file).contains("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx12456484"));
-    }
     private void clickPokracovat(String buttonValue, int step) throws IOException {
         clickPokracovat(buttonValue, "Krok " + step + " z 5", "Step " + step);
     }
