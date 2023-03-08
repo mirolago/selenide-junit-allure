@@ -14,14 +14,14 @@
     <allure-maven.version>2.11.2</allure-maven.version>
     <aspectj.version>1.9.9.1</aspectj.version>
     <junit5.version>5.9.0</junit5.version>
-    <junit-pioneer.version>1.8.0</junit-pioneer.version>
+    <junit-pioneer.version>1.9.1</junit-pioneer.version>
     <junitplatform.version>1.9.0</junitplatform.version>
     <maven.compiler.target>17</maven.compiler.target>
     <maven.compiler.source>17</maven.compiler.source>
     <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
     <pdfbox.version>2.0.27</pdfbox.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <selenide.version>6.10.1</selenide.version>
+    <selenide.version>6.10.3</selenide.version>
     <selenium-shutterbug.version>1.6</selenium-shutterbug.version>
   </properties>
 
@@ -29,6 +29,11 @@
     <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide</artifactId>
+      <version>${selenide.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide-proxy</artifactId>
       <version>${selenide.version}</version>
     </dependency>
     <dependency>

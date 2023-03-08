@@ -18,11 +18,11 @@ class DarcaKrviTest extends Base {
     void testCase01() throws IOException {
         open(testUrl);
         attachScreenshot("Main screen");
-        clickPokracovat("Slovenčina", 1);
+        clickNext("English", 1);
         $("#vyska").setValue("180");
         $("#vaha").setValue("180");
         clickRadio("pohlavie_MUZ");
-        clickPokracovat("Pokračovať", 2);
+        clickNext("Next", 2);
         clickRadio("otazka1_ANO");
         clickRadio("otazka2_ANO");
         clickRadio("otazka3_ANO");
@@ -31,7 +31,7 @@ class DarcaKrviTest extends Base {
         clickRadio("otazka6_NIE");
         clickRadio("otazka7_ANO");
         clickRadio("otazka8_ANO");
-        clickPokracovat("Pokračovať", 3);
+        clickNext("Next", 3);
         clickRadio("otazka9aNie");
         clickRadio("otazka9bNie");
         clickRadio("otazka9cNie");
@@ -48,7 +48,7 @@ class DarcaKrviTest extends Base {
         clickRadio("otazka10Nie");
         clickRadio("otazka11Nie");
         clickRadio("otazka12Nie");
-        clickPokracovat("Pokračovať", 4);
+        clickNext("Next", 4);
         clickRadio("otazka13aNie");
         clickRadio("otazka13bNie");
         clickRadio("otazka13cNie");
@@ -67,7 +67,7 @@ class DarcaKrviTest extends Base {
         clickRadio("otazka22cNie");
         clickRadio("otazka23Nie");
         clickRadio("otazka24Nie");
-        clickPokracovat("Pokračovať", 5);
+        clickNext("Next", 5);
         $("#miestoPodpisu").setValue("Lozorno");
         $("#datumPodpisu").setValue("01012022");
         clickRadio("teplota37Nie");
@@ -75,21 +75,21 @@ class DarcaKrviTest extends Base {
         clickRadio("kontaktZahranicieNie");
         clickRadio("priznakOchoreniaNie");
         clickRadio("prekonalCovidNie");
-        $$("input.button").findBy(value("Pokračovať")).click();
-        $(byText("Ďakujeme, že ste sa rozhodli darovať krv")).shouldBe(visible);
+        $$("input.button").findBy(value("Next")).click();
+        $(byText("Thank you for your blood donation")).shouldBe(visible);
         switchTo().window(1);
-        $(byText("Váš dotazník sa pripravuje. Počkajte prosím...")).shouldBe(visible);
+        $(byText("Your questionnaie is being prepared. Please wait...")).shouldBe(visible);
         switchTo().window(0);
         attachScreenshot("Step 6");
         File file = new File(WebDriverRunner.getBrowserDownloadsFolder() + "/dotaznik.pdf");
-        Assertions.assertTrue(returnPdfContent(file).contains("Dotazník pre darcov krvi"));
+        Assertions.assertTrue(returnPdfContent(file).contains("Questionnaire for Donors of Blood, Plasma and Blood Cells"));
     }
 
-    private void clickPokracovat(String buttonValue, int step) throws IOException {
-        clickPokracovat(buttonValue, "Krok " + step + " z 5", "Step " + step);
+    private void clickNext(String buttonValue, int step) throws IOException {
+        clickNext(buttonValue, "Step " + step + " out of 5", "Step " + step);
     }
 
-    private void clickPokracovat(String buttonValue, String textToBeVisible, String screenshotName) throws IOException {
+    private void clickNext(String buttonValue, String textToBeVisible, String screenshotName) throws IOException {
         $$("input.button").findBy(value(buttonValue)).click();
         $(byText(textToBeVisible)).shouldBe(visible);
         attachScreenshot(screenshotName);

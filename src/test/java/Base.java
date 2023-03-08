@@ -3,10 +3,13 @@ import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,13 +35,15 @@ public class Base {
         }
         Configuration.baseUrl = testUrl;
 //        Configuration.proxyEnabled = true;
+//        Configuration.fileDownload = FileDownloadMode.PROXY;
+        //        Configuration.proxyEnabled = true;
 //        Configuration.proxyHost = "0.0.0.0";
 //        Configuration.fileDownload = FileDownloadMode.PROXY;
     }
 
-    @Attachment(value = "{nazovScreenshotu}", type = "image/png")
-    protected byte[] attachScreenshot(String nazovScreenshotu) throws IOException {
-        return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(nazovScreenshotu).getBytes();
+    @Attachment(value = "{screenshotName}", type = "image/png")
+    protected byte[] attachScreenshot(String screenshotName) throws IOException {
+        return Shutterbug.shootPage(WebDriverRunner.getWebDriver(), Capture.FULL).withName(screenshotName).getBytes();
     }
 
     @AfterAll
@@ -57,5 +62,10 @@ public class Base {
         }
         document.close();
         return text;
+    }
+
+    @BeforeEach
+    public void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true).includeSelenideSteps(false));
     }
 }
